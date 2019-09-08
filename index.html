@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #ccc;
+    }
+
+    #pic {
+        width: 500px;
+        height: 500px;
+        position: relative;
+        margin: 10px auto;
+        background: #fff;
+    }
+
+    p {
+        width: 500px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: pink;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+    }
+
+    span {
+        display: block;
+        width: 500px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        background: pink;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+
+    ul {
+        position: absolute;
+        top: 0;
+        right: -50px;
+    }
+
+    li {
+        width: 30px;
+        height: 30px;
+        background: #aaa;
+        margin-bottom: 10px;
+        list-style: none;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+    }
+
+    .active {
+        background: blue;
+    }
+</style>
+
+
+<script>
+    window.onload = function () {
+        var oDiv = document.getElementById('pic');
+        var oP = oDiv.getElementsByTagName('p')[0];
+        var oImg = oDiv.getElementsByTagName('img')[0];
+        var oSpan = oDiv.getElementsByTagName('span')[0];
+        var oUl = oDiv.getElementsByTagName('ul')[0]
+        var oLi = oUl.getElementsByTagName('li')
+
+        var arrUrl = ['img/1.jpg', 'img/2.jpg', 'img/3.jpg', 'img/4.jpg']
+        var arrText = ['杨一', '杨二', '杨三', '杨四']
+        var num = 0
+
+        for (i = 0; i < arrUrl.length; i++) {
+            oUl.innerHTML += '<li></li>'
+        }
+        //初始化 
+        oImg.src = arrUrl[num]
+        oP.innerHTML = 1 + num + '/' + arrUrl.length
+        oSpan.innerHTML = arrText[num]
+        oLi[num].className = 'active'
+
+        for (var i = 0; i < arrUrl.length; i++) {
+            oLi[i].index = i//给每一个li添加一个索引值
+            oLi[i].onclick = function () {
+                oImg.src = arrUrl[this.index]
+                oSpan.innerHTML = arrText[this.index]
+                oP.innerHTML = 1 + this.index + '/' + arrText.length
+
+                //改变li的active状态
+                for (i = 0; i < oLi.length; i++) {
+                    oLi[i].className = ''  //把所有li的className变为空
+                    this.className = 'active'  //把当前点击的li变为active
+                }
+            }
+
+        }
+    }
+</script>
+
+
+</head>
+
+<body>
+    <div id="pic">
+        <p>图片数量统计中...</p>
+        <img src="">
+        <span>图片正在加载中...</span>
+        <ul></ul>
+    </div>
+</body>
+
+</html>
